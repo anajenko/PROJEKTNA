@@ -1,0 +1,41 @@
+services:
+  mysql:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: geslo_root
+      MYSQL_DATABASE: mydb
+    ports:
+      - "3307:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+  
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8001:8000"
+    volumes:
+      - .:/app
+    environment:
+      DB_USER: root
+      DB_PASSWORD: geslo_root
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_NAME: mydb
+    depends_on:
+      mysql:
+        condition: service_healthy
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./visit-frontend
+      dockerfile: Dockerfile
+    ports:
+      - "4201:80"
+    restart: unless-stopped

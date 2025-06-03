@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Request, Depends
+from fastapi import FastAPI, Request, Depends, Response, status
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 from database import SessionLocal, engine
@@ -32,7 +32,7 @@ class VisitInput(BaseModel):
 
 @app.post("/visit")
 async def register_visit(request: Request, db: Session = Depends(get_db)):
-# 1. Ignoriraj OPTIONS zahtevke
+    # 1. Ignoriraj OPTIONS zahtevke
     if request.method == "OPTIONS":
         return Response(status_code=status.HTTP_204_NO_CONTENT)
 
