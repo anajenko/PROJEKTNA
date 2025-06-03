@@ -41,6 +41,7 @@ Full-stack spletna aplikacija za evidenco obiskov; beležita se čas in ip naslo
 
 3. Aplikacija bo na voljo na:
    - Frontend: http://212.101.137.109:4201
-   - Backend (API): http://212.101.137.109:8001
    - Primer API zahteve: http://212.101.137.109:8001/visits
    - API dokumentacija: http://212.101.137.109:8001/docs
+
+
