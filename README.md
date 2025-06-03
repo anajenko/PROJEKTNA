@@ -26,20 +26,9 @@ Full-stack spletna aplikacija za evidenco obiskov; beležita se čas in ip naslo
   <tr><td>└── README.md</td>        <td style="padding-left: 2cm;">  --> dokumentacija</td></tr>
 </table>
 
-## Zagon (Docker)
 
-1. Kloniraj repozitorij:
 
-   ```bash
-   git clone https://github.com/anajenko/PROJEKTNA.git
-   cd PROJEKTNA
-
-2. Zgradi in zaženi aplikacijo z Docker Compose:
-
-   ```bash
-   sudo docker-compose up --build
-
-3. Aplikacija bo na voljo na:
+Aplikacija je na voljo na:
    - Frontend: http://212.101.137.109:4201
    - Primer API zahteve: http://212.101.137.109:8001/visits
    - API dokumentacija: http://212.101.137.109:8001/docs
