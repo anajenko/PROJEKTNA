@@ -13,7 +13,7 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # za razvoj je * OK, v produkciji bolj restriktivno
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -40,8 +40,8 @@ async def register_visit(request: Request, db: Session = Depends(get_db)):
     x_forwarded_for = request.headers.get("x-forwarded-for")
     ip = x_forwarded_for.split(",")[0] if x_forwarded_for else request.client.host
 
-    # 3. Ignoriraj proxy IP (če je to IP tvoje virtualke / strežnika)
-    if ip == "212.101.137.109":  # <- prilagodi ta IP po potrebi
+    # 3. Ignoriraj proxy IP (IP virtualke)
+    if ip == "212.101.137.109":
         print(f"[IGNORED] {datetime.utcnow()} - Proxy IP ignored: {ip}")
         return {"message": "Proxy visit ignored", "ip": ip}
 
